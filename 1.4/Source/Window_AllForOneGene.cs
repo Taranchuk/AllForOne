@@ -79,13 +79,11 @@ namespace AllForOneGene
             if (Widgets.ButtonText(cancelButton, "Cancel"))
             {
                 Cancel();
-                this.Close();
             }
             var acceptButton = new Rect((inRect.width / 3f) + (150), inRect.height - 32, 150, 32);
             if (Widgets.ButtonText(acceptButton, "Start"))
             {
                 Start();
-                this.Close();
             }
         }
 
@@ -94,20 +92,20 @@ namespace AllForOneGene
         {
             CompAbilityEffect_AllForOne.ThrowRedSmoke(target.DrawPos, target.Map, 3f);
             AllForOne_DefOf.AllForOneCast.PlayOneShot(new TargetInfo(target.Position, target.Map));
+            this.Close();
         }
 
         public override void OnCancelKeyPressed()
         {
             base.OnCancelKeyPressed();
-            Cancel();
+            caster.jobs.EndCurrentJob(JobCondition.InterruptForced);
         }
 
         [SyncMethod]
         private void Cancel()
         {
-            Rand.PushState(Find.TickManager.TicksAbs);
             caster.jobs.EndCurrentJob(JobCondition.InterruptForced);
-            Rand.PopState();
+            this.Close();
         }
 
         private void DrawGeneArea(Rect area, Pawn pawn, bool casterGene, CompAbilityEffect_AllForOne comp, ref Vector2 scrollPos)
