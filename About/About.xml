@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ModMetaData>
+  <name>All For One Gene</name>
+  <author>Johnny H. Hellmann</author>
+  <packageId>JohnnyHellmann.AllForOneGene</packageId>
+  <description>Adds All For One Gene.</description>
+  <supportedVersions>
+    <li>1.4</li>
+  </supportedVersions>
+</ModMetaData>
