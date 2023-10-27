@@ -17,25 +17,17 @@ namespace AllForOneGene
         {
             if (!MP.enabled) return;
             MP.RegisterAll();
-            MP.RegisterSyncWorker<Window_AllForOneGene>(SyncWindow_AllForOneGene, shouldConstruct: true);
+            MP.RegisterSyncWorker<Window_AllForOneGene>(SyncWindow_AllForOneGene, shouldConstruct: false);
             MP.RegisterPauseLock(delegate
             {
                 return Find.WindowStack.IsOpen<Window_AllForOneGene>();
             });
         }
-    
+
         private static void SyncWindow_AllForOneGene(SyncWorker sync, ref Window_AllForOneGene window)
         {
-            if (sync.isWriting)
-            {
-                sync.Write(window.caster);
-                sync.Write(window.target);
-            }
-            else
-            {
-                window.caster = sync.Read<Pawn>();
-                window.target = sync.Read<Pawn>();
-            }
+            if (!sync.isWriting)
+                window = Find.WindowStack.WindowOfType<Window_AllForOneGene>();
         }
     }
 
