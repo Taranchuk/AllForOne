@@ -90,6 +90,8 @@ namespace AllForOneGene
         [SyncMethod]
         private void Start()
         {
+            if (!this.IsOpen)
+                return;
             CompAbilityEffect_AllForOne.ThrowRedSmoke(target.DrawPos, target.Map, 3f);
             AllForOne_DefOf.AllForOneCast.PlayOneShot(new TargetInfo(target.Position, target.Map));
             this.Close();
@@ -104,6 +106,8 @@ namespace AllForOneGene
         [SyncMethod]
         private void Cancel()
         {
+            if (!this.IsOpen)
+                return;
             caster.jobs.EndCurrentJob(JobCondition.InterruptForced);
             this.Close();
         }
