@@ -56,14 +56,14 @@ namespace AllForOneGene
             try
             {
                 var comp = parent.pawn.CurJob.ability.CompOfType<CompAbilityEffect_AllForOne>();
-                //if (comp.casterGenesToGive.Any())
-                //{
-                //    target.Pawn.health.AddHediff(AllForOne_DefOf.ForcefulGeneImplantationComa);
-                //}
-                //if (comp.targetGenesToTake.Any())
-                //{
-                //    target.Pawn.health.AddHediff(AllForOne_DefOf.ForcefulGeneRemovalComa);
-                //}
+                if (comp.casterGenesToGive.Any())
+                {
+                    target.Pawn.health.AddHediff(AllForOne_DefOf.ForcefulGeneImplantationComa);
+                }
+                if (comp.targetGenesToTake.Any())
+                {
+                    target.Pawn.health.AddHediff(AllForOne_DefOf.ForcefulGeneRemovalComa);
+                }
                 foreach (var gene in casterGenesToGive.ToList())
                 {
                     target.Pawn.genes.AddGene(gene.def, true);

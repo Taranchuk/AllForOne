@@ -167,8 +167,5 @@ namespace AllForOneGene
             Text.Anchor = TextAnchor.UpperLeft;
             Widgets.EndScrollView();
         }
-
-        [SyncMethod] public static void AddToList(Gene gene, List<Gene> list) => list.Add(gene);
-        [SyncMethod] public static void RemoveFromList(Gene gene, List<Gene> list) => list.Remove(gene);
     }
 }
